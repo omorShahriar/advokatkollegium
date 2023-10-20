@@ -1,0 +1,77 @@
+================================================================
+DOCUMENTS:
+================================================================
+
+Frontpage:
+- Content
+- Hero
+- SEO / Publish settings
+
+Page:
+- Title
+- Content
+- Hero
+- SEO / Publish settings
+
+Competence:
+- Title
+- Image
+- Content
+
+Employee:
+- Name
+- Image
+- Title
+- Email
+- Bio
+- Area of ​​expertise [competence]
+
+
+
+//not sure about options
+
+Form:
+- Name
+- Fields [name, placeholder, type, required, width, options]
+- Recipients [string]
+
+Header:
+- Menu [links]
+- CTA
+
+Footer:
+- Menus [title, links]
+- Bottom line menu [links]
+
+Settings:
+- Site title
+- Base URL
+- Favicon
+- Logo
+- Address
+- Phone
+- Email
+- Site description
+- Keywords [string]
+- Open Graph Image
+- Google Tag Manager ID
+
+
+
+
+
+
+
+================================================================
+SECTIONS:
+================================================================
+
+- Rich content
+- Area of ​​expertise
+
+- Laywer preview
+- Laywer list
+- Display form
+- Banner
+- Text
+- Image

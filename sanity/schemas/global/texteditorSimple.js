@@ -1,26 +1,29 @@
-import { FiGlobe, FiLink } from "react-icons/fi";
+import { RiGlobalLine, RiLinkM } from "react-icons/ri";
+import { defineType } from "sanity";
 
-const texteditorSimple = {
-  title: "Simple texteditor",
+export default defineType({
   name: "texteditorSimple",
   type: "array",
+  title: "Text editor",
   of: [
     {
       type: "block",
-      styles: [],
-      lists: [],
+      styles: [{ title: "Normal", value: "normal" }],
+      lists: [
+        { title: "Bullet", value: "bullet" },
+        { title: "Number", value: "number" },
+      ],
       marks: {
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
-          { title: "Code", value: "code" },
         ],
         annotations: [
           {
-            name: "link",
-            type: "object",
             title: "Link",
-            icon: FiGlobe,
+            name: "externalLink",
+            type: "object",
+            icon: RiGlobalLine,
             fields: [
               {
                 name: "url",
@@ -34,19 +37,15 @@ const texteditorSimple = {
             ],
           },
           {
+            title: "Internal link",
             name: "internalLink",
             type: "object",
-            title: "Internal link",
-            icon: FiLink,
+            icon: RiLinkM,
             fields: [
               {
                 name: "reference",
                 type: "reference",
-                to: [
-                  { type: "page" },
-
-                  //  { type: 'travel' }
-                ],
+                to: [{ type: "frontpage" }, { type: "page" }],
               },
             ],
           },
@@ -54,6 +53,4 @@ const texteditorSimple = {
       },
     },
   ],
-};
-
-export default texteditorSimple;
+});

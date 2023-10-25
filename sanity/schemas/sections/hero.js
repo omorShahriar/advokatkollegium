@@ -1,4 +1,5 @@
 import { FiLayout } from "react-icons/fi";
+import { defineField } from "sanity";
 
 const hero = {
   title: "Hero",
@@ -25,27 +26,37 @@ const hero = {
       validation: (Rule) => Rule.required(),
     },
     {
+      title: "Sub Heading",
+      name: "subHeading",
+      type: "string",
+    },
+    {
       title: "Description",
       name: "description",
       type: "text",
       validation: (Rule) => Rule.required(),
     },
-    {
-      title: "Slogan",
-      name: "slogan",
-      type: "string",
-    },
-    {
-      title: "CTA List",
-      name: "ctaList",
+    defineField({
+      name: "actions",
       type: "array",
-      of: [{ type: "cta" }],
-    },
+      title: "Actions",
+      of: [{ type: "link" }],
+    }),
     {
       title: "Background",
       name: "background",
       type: "image",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((background, context) => {
+          if (
+            (context.document.type === "frontpage" ||
+              context.document.type === "normal_background") &&
+            !background
+          ) {
+            return "Background is required";
+          }
+          return true;
+        }),
     },
   ],
   preview: {

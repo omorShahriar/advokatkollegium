@@ -14,6 +14,11 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "subHeading",
+      type: "string",
+      title: "Sub Heading",
+    }),
+    defineField({
       name: "content",
       type: "texteditorSimple",
       title: "Content",
@@ -67,10 +72,6 @@ export default defineType({
         list: [
           { title: "Transparent", value: "transparent" },
           { title: "Image", value: "image" },
-          { title: "Brand blue", value: "brandBlue" },
-          { title: "Light blue", value: "lightBlue" },
-          { title: "Gray", value: "gray" },
-          { title: "Black", value: "black" },
         ],
       },
       validation: (Rule) => Rule.required(),

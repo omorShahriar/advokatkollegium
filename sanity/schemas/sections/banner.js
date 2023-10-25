@@ -1,3 +1,5 @@
+import { defineField } from "sanity";
+
 const banner = {
   title: "Banner",
   name: "banner",
@@ -9,20 +11,20 @@ const banner = {
       type: "string",
     },
     {
-      title: "Subtext",
-      name: "subtext",
-      type: "text",
+      title: "Sub Heading",
+      name: "subHeading",
+      type: "string",
     },
     {
       title: "Background Image",
       name: "backgroundImage",
       type: "image",
     },
-    {
-      title: "CTA",
-      name: "cta",
-      type: "cta",
-    },
+    defineField({
+      name: "link",
+      type: "link",
+      title: "Button",
+    }),
   ],
 };
 

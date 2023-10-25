@@ -7,32 +7,37 @@ const employee = {
       name: "name",
       title: "Name",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "image",
       title: "Image",
       type: "image",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
 
     {
       name: "email",
       title: "Email",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
 
     {
       name: "bio",
       title: "Bio",
       type: "text",
+      validation: (Rule) => Rule.required(),
     },
     {
-      name: "ariaOfExpertise",
       title: "Area of Expertise",
+      name: "ariaOfExpertise",
       type: "array",
       of: [
         {
@@ -41,6 +46,7 @@ const employee = {
           to: [{ type: "competence" }],
         },
       ],
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {

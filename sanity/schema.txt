@@ -27,9 +27,6 @@ Employee:
 - Area of ​​expertise [competence]
 
 
-
-//not sure about options
-
 Form:
 - Name
 - Fields [name, placeholder, type, required, width, options]
@@ -68,7 +65,6 @@ SECTIONS:
 
 - Rich content
 - Area of ​​expertise
-
 - Laywer preview
 - Laywer list
 - Display form

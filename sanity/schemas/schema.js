@@ -22,7 +22,7 @@ import normalText from "./sections/normalText";
 import normalImage from "./sections/normalImage";
 import displayForm from "./sections/displayForm";
 import form from "./documents/form";
-import frontpage from "./documents/frontPage";
+import frontpage from "./documents/frontpage";
 
 export const schemaTypes = [
   //Documents

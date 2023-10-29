@@ -12,20 +12,6 @@ const frontpage = {
     { name: "seo", title: "🔍 SEO" },
   ],
   fields: [
-    {
-      name: "title",
-      type: "string",
-      title: "Title",
-      group: "content",
-      validation: (Rule) => Rule.required(),
-    },
-    defineField({
-      name: "hero",
-      type: "hero",
-      title: "Hero",
-      group: "hero",
-    }),
-
     defineField({
       name: "content",
       type: "array",
@@ -46,6 +32,13 @@ const frontpage = {
         },
       ],
     }),
+    defineField({
+      name: "hero",
+      type: "hero",
+      title: "Hero",
+      group: "hero",
+    }),
+
     defineField({
       name: "metadata",
       type: "metadata",

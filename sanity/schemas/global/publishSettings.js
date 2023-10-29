@@ -17,8 +17,8 @@ export default defineType({
         input: SlugInput,
       },
       options: {
-        urlPrefix: `https://advokatkollegium.no/`,
-        source: (doc) => doc.title,
+        urlPrefix: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/`,
+        source: (doc) => doc.title || doc.name,
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),

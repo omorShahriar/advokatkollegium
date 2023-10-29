@@ -1,66 +1,109 @@
-const settings = {
+import { RiSettings5Line } from "react-icons/ri";
+import { defineField, defineType } from "sanity";
+
+export default defineType({
   name: "settings",
   type: "document",
   title: "Settings",
+  icon: RiSettings5Line,
+  groups: [
+    { name: "general", title: "⚙️ General", default: true },
+    { name: "contact", title: "📞 Contact" },
+    { name: "seo", title: "🔍 SEO" },
+    { name: "integrations", title: "🔌 Integrations" },
+  ],
   fields: [
-    {
-      title: "Site title",
+    // General
+    defineField({
       name: "title",
       type: "string",
-    },
-    {
-      title: "Base URL",
+      title: "Site title",
+      group: "general",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "url",
       type: "url",
-    },
-    {
-      title: "Favicon",
+      title: "Base URL",
+      group: "general",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "favicon",
       type: "image",
-    },
-    {
-      title: "Logo",
+      title: "Favicon",
+      group: "general",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "logo",
       type: "image",
-    },
-    {
-      title: "Address",
-      name: "address",
-      type: "string",
-    },
-    {
-      title: "Phone",
+      title: "Logo",
+      group: "general",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    // Contact
+    defineField({
       name: "phone",
       type: "string",
-    },
-    {
-      title: "Email",
+      title: "Phone",
+      group: "contact",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "email",
       type: "string",
-    },
-    {
-      name: "siteDescription",
+      title: "Email",
+      group: "contact",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "address",
+      type: "string",
+      title: "Address",
+      group: "contact",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    // SEO
+    defineField({
+      name: "description",
       type: "text",
       title: "Site description",
-    },
-    {
+      rows: 3,
+      group: "seo",
+    }),
+    defineField({
       name: "keywords",
-      title: "Keywords",
       type: "array",
+      title: "Keywords",
       of: [{ type: "string" }],
-    },
-    {
-      title: "Open Graph Image",
+      options: {
+        layout: "tags",
+      },
+      group: "seo",
+    }),
+    defineField({
       name: "openGraphImage",
       type: "image",
-      description: "Image for sharing previews on Facebook, Twitter etc.",
-    },
-    {
-      title: "Google Tag Manager ID",
-      name: "googleTagmanagerId",
-      type: "string",
-    },
-  ],
-};
+      title: "Open Graph Image",
+      group: "seo",
+    }),
 
-export default settings;
+    // Integrations
+    defineField({
+      name: "googleTagManagerId",
+      type: "string",
+      title: "Google Tag Manager ID",
+      group: "integrations",
+    }),
+  ],
+  preview: {
+    prepare() {
+      return {
+        title: "Settings",
+      };
+    },
+  },
+});

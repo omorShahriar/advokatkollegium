@@ -13,6 +13,11 @@ export default defineType({
       title: "Content",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "sectionId",
+      type: "string",
+      title: "Section ID",
+    }),
   ],
   preview: {
     select: {

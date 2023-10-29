@@ -14,10 +14,9 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "subHeading",
+      name: "description",
       type: "texteditorSimple",
-      title: "Sub Heading",
-      validation: (Rule) => Rule.required(),
+      title: "Description",
     }),
     defineField({
       name: "email",

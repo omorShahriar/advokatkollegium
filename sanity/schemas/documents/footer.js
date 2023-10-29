@@ -6,56 +6,63 @@ const footer = {
   title: "Footer",
   fields: [
     {
+      name: "menus",
+      title: "Menus",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "menu",
+          title: "Menu",
+          fields: [
+            defineField({
+              name: "title",
+              type: "string",
+              title: "Title",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "links",
+              type: "array",
+              title: "Links",
+              of: [{ type: "link" }],
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              title: "title",
+              links: "links",
+            },
+            prepare({ title, links }) {
+              return {
+                title,
+                subtitle: `${links.length} links`,
+              };
+            },
+          },
+        },
+      ],
+    },
+    {
       title: "Copyright",
       name: "copyright",
       type: "texteditorSimple",
     },
     {
-      name: "menu",
-      title: "Menu",
+      name: "bottomLineMenu",
       type: "array",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "page" }],
-        },
-      ],
-      validation: (Rule) =>
-        Rule.unique().error("You can't add the same page twice"),
-    },
-    {
-      title: "Contact options",
-      name: "contactOptions",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              title: "Title",
-              name: "title",
-              type: "string",
-            },
-            {
-              title: "Link",
-              name: "link",
-              type: "url",
-              validation: (Rule) =>
-                Rule.uri({
-                  scheme: ["http", "https", "mailto", "tel"],
-                  allowRelative: true,
-                }),
-            },
-            {
-              title: "Icon",
-              name: "icon",
-              type: "image",
-            },
-          ],
-        },
-      ],
+      title: "Bottom line menu",
+      of: [{ type: "link" }],
     },
   ],
+  preview: {
+    prepare() {
+      return {
+        title: "Footer",
+      };
+    },
+  },
 };
 
 export default footer;

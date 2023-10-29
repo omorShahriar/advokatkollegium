@@ -10,19 +10,11 @@ import { media, mediaAssetSource } from "sanity-plugin-media";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schemaTypes } from "./sanity/schemas/schema";
 import { structure } from "./lib/sanity.structure";
+import { previewDocumentNode } from "./plugins/previewPane";
 
 const TITLE = process.env.NEXT_PUBLIC_SANITY_TITLE || "Advokat Kollegium";
 
 // Define the actions that should be available for singleton documents
-const singletonActions = new Set([
-  "publish",
-  "discardChanges",
-  "restore",
-  "update",
-]);
-
-// Define the singleton document types
-const singletonTypes = new Set(["frontpage", "settings", "header", "footer"]);
 
 const PREVIEW_DOCUMENTS = ["frontpage", "page"];
 const LOCKED_DOCUMENTS = [
@@ -33,14 +25,43 @@ const LOCKED_DOCUMENTS = [
   "media.tag",
 ];
 
+const Icon = () => {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/icon.png"
+      alt={TITLE}
+      style={{ maxHeight: "100%", maxWidth: "100%", borderRadius: "0.1875rem" }}
+    />
+  );
+};
+
 export default defineConfig({
   title: TITLE,
+  icon: Icon,
   basePath: "/studio",
   projectId,
   dataset,
   schema: {
     types: schemaTypes,
   },
+  plugins: [
+    deskTool({
+      structure,
+      defaultDocumentNode: previewDocumentNode({
+        apiVersion,
+        previewSecretId,
+        types: PREVIEW_DOCUMENTS,
+      }),
+    }),
+    productionUrl({
+      apiVersion,
+      previewSecretId,
+      types: PREVIEW_DOCUMENTS,
+    }),
+    media(),
+    visionTool({ defaultApiVersion: apiVersion }),
+  ],
   document: {
     newDocumentOptions: (prev, { creationContext }) => {
       if (creationContext.type === "global") {
@@ -60,13 +81,7 @@ export default defineConfig({
       return prev;
     },
   },
-  plugins: [
-    deskTool({
-      structure,
-    }),
-    media(),
-    visionTool({ defaultApiVersion: apiVersion }),
-  ],
+
   form: {
     file: {
       assetSources: (prev) => prev.filter((s) => s !== mediaAssetSource),

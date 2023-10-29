@@ -1,59 +1,29 @@
+import { RiLayoutTop2Line } from "react-icons/ri";
 import { defineField, defineType } from "sanity";
-const header = defineType({
+
+export default defineType({
   name: "header",
   type: "document",
   title: "Header",
-  fieldsets: [
-    {
-      title: "Button",
-      name: "button",
-    },
-  ],
+  icon: RiLayoutTop2Line,
   fields: [
-    {
-      title: "Logo",
-      name: "logo",
-      type: "image",
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative text",
-          options: {
-            isHighlighted: false,
-          },
-        },
-      ],
-    },
-    {
-      title: "Button text",
-      name: "buttonText",
-      type: "string",
-      fieldset: "button",
-      validation: (Rule) => Rule.required(),
-    },
-    defineField({
-      title: "Button link",
-      name: "buttonLink",
-      type: "reference",
-      to: [{ type: "page" }],
-      fieldset: "button",
-      validation: (Rule) => Rule.required(),
-    }),
     defineField({
       name: "menu",
-      title: "Menu",
       type: "array",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "page" }],
-        },
-      ],
-      validation: (Rule) =>
-        Rule.unique().error("You can't add the same page twice"),
+      title: "Menu",
+      of: [{ type: "link" }],
+    }),
+    defineField({
+      name: "cta",
+      type: "link",
+      title: "CTA",
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: "Header",
+      };
+    },
+  },
 });
-
-export default header;

@@ -14,9 +14,9 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "subHeading",
-      type: "string",
-      title: "Sub Heading",
+      name: "description",
+      type: "texteditorSimple",
+      title: "Description",
     }),
     defineField({
       name: "content",
@@ -75,6 +75,11 @@ export default defineType({
         ],
       },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "sectionId",
+      type: "string",
+      title: "Section ID",
     }),
   ],
   preview: {

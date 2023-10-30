@@ -1,16 +1,16 @@
-import { RiAlignLeft } from "react-icons/ri";
+import { RiText } from "react-icons/ri";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "normalText",
+  name: "textNormal",
   type: "object",
   title: "Text",
-  icon: RiAlignLeft,
+  icon: RiText,
   fields: [
     defineField({
-      name: "content",
+      name: "text",
       type: "texteditor",
-      title: "Content",
+      title: "Text",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -27,7 +27,7 @@ export default defineType({
       return {
         title: "Text",
         subtitle: text,
-        icon: RiAlignLeft,
+        icon: RiText,
       };
     },
   },

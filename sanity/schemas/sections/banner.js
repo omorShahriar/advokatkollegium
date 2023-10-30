@@ -8,16 +8,17 @@ export default defineType({
   icon: RiInformationLine,
   fields: [
     defineField({
+      name: "subHeading",
+      type: "string",
+      title: "Sub Heading",
+    }),
+    defineField({
       name: "heading",
       type: "string",
       title: "Heading",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: "bigText",
-      type: "string",
-      title: "Big Text",
-    }),
+
     defineField({
       name: "background",
       type: "string",
@@ -25,8 +26,6 @@ export default defineType({
       options: {
         list: [
           { title: "Image", value: "image" },
-          { title: "Brand (light)", value: "brandLight" },
-          { title: "Brand (dark)", value: "brandDark" },
           { title: "Gray", value: "gray" },
         ],
       },
@@ -50,7 +49,7 @@ export default defineType({
     }),
 
     defineField({
-      name: "link",
+      name: "button",
       type: "link",
       title: "Button",
     }),

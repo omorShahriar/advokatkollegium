@@ -2,7 +2,7 @@ import { RiImage2Line } from "react-icons/ri";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "normalImage",
+  name: "imageNormal",
   type: "object",
   title: "Image",
   icon: RiImage2Line,
@@ -15,6 +15,11 @@ export default defineType({
         hotspot: true,
       },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "sectionId",
+      type: "string",
+      title: "Section ID",
     }),
   ],
   preview: {

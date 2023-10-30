@@ -18,7 +18,7 @@ const areaOfExpertise = {
     {
       title: "Description",
       name: "description",
-      type: "text",
+      type: "texteditorSimple",
       validation: (Rule) => Rule.required(),
     },
     {

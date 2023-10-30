@@ -25,7 +25,6 @@ const page = {
       name: "hero",
       type: "hero",
       group: "hero",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "content",
@@ -40,10 +39,10 @@ const page = {
         { type: "displayForm" },
         { type: "banner" },
         {
-          type: "normalText",
+          type: "textNormal",
         },
         {
-          type: "normalImage",
+          type: "imageNormal",
         },
       ],
     }),

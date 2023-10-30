@@ -35,8 +35,8 @@ const lawyerPreview = {
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Link",
-      name: "link",
+      title: "Button",
+      name: "button",
       type: "link",
       validation: (Rule) => Rule.required(),
     },

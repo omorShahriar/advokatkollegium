@@ -25,10 +25,10 @@ const frontpage = {
         { type: "displayForm" },
         { type: "banner" },
         {
-          type: "normalText",
+          type: "textNormal",
         },
         {
-          type: "normalImage",
+          type: "imageNormal",
         },
       ],
     }),

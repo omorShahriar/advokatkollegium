@@ -39,6 +39,13 @@ export default defineType({
       name: "logo",
       type: "image",
       title: "Logo",
+      fields: [
+        {
+          name: "altText",
+          type: "string",
+          title: "Alt text",
+        },
+      ],
       group: "general",
       validation: (Rule) => Rule.required(),
     }),
@@ -60,7 +67,7 @@ export default defineType({
     }),
     defineField({
       name: "address",
-      type: "string",
+      type: "texteditorSimple",
       title: "Address",
       group: "contact",
       validation: (Rule) => Rule.required(),

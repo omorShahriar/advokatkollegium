@@ -7,10 +7,16 @@ import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { media, mediaAssetSource } from "sanity-plugin-media";
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import { apiVersion, dataset, projectId } from "./sanity/env";
+import {
+  apiVersion,
+  dataset,
+  projectId,
+  previewSecretId,
+} from "@/lib/sanity.api";
 import { schemaTypes } from "./sanity/schemas/schema";
 import { structure } from "./lib/sanity.structure";
 import { previewDocumentNode } from "./plugins/previewPane";
+import { productionUrl } from "./plugins/productionUrl";
 
 const TITLE = process.env.NEXT_PUBLIC_SANITY_TITLE || "Advokat Kollegium";
 

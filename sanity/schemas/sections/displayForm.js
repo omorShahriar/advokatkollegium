@@ -8,16 +8,18 @@ export default defineType({
   icon: RiTodoLine,
   fields: [
     defineField({
+      name: "subHeading",
+      type: "string",
+      title: "Sub Heading",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "heading",
       type: "string",
       title: "Heading",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: "description",
-      type: "texteditorSimple",
-      title: "Description",
-    }),
+
     defineField({
       name: "email",
       type: "string",

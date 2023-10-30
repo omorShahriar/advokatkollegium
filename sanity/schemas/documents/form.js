@@ -136,22 +136,25 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "recipient",
-      type: "string",
-      title: "Recipient",
+      name: "recipients",
+      type: "array",
+      of: [{ type: "string" }],
+      title: "Recipients",
       validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
       name: "name",
-      recipient: "recipient",
+      recipients: "recipients",
       fields: "fields",
     },
-    prepare({ name, recipient, fields }) {
+    prepare({ name, recipients, fields }) {
       return {
         title: name,
-        subtitle: `${recipient} - ${fields?.length ? fields.length : 0} fields`,
+        subtitle: `${
+          recipients?.length ? `${recipients.length} recipients -` : null
+        }  ${fields?.length ? fields.length : 0} fields`,
         icon: RiMailSendLine,
       };
     },

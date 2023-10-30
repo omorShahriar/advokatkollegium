@@ -16,8 +16,8 @@ export default defineType({
       name: "page",
       type: "reference",
       title: "Page",
-      description: "Select an internal page t to link to.",
-      to: [{ type: "page" }],
+      description: "Select an internal page to link to.",
+      to: [{ type: "page" }, { type: "frontpage" }],
       validation: (Rule) =>
         Rule.custom((value, context) => {
           if (value && (context.parent.link || context.parent.jumpToContact)) {

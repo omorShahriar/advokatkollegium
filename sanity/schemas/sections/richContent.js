@@ -8,6 +8,12 @@ export default defineType({
   icon: RiArticleLine,
   fields: [
     defineField({
+      name: "subHeading",
+      type: "string",
+      title: "Sub Heading",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "heading",
       type: "string",
       title: "Heading",
@@ -18,12 +24,7 @@ export default defineType({
       type: "texteditorSimple",
       title: "Description",
     }),
-    defineField({
-      name: "content",
-      type: "texteditorSimple",
-      title: "Content",
-      validation: (Rule) => Rule.required(),
-    }),
+
     defineField({
       name: "link",
       type: "link",

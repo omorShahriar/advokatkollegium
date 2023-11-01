@@ -10,10 +10,10 @@ export function Button({ link, title, onPress, className, style = "outline" }) {
   if (!link?.title && !(onPress && title)) return null;
 
   const defaultStyle =
-    "group flex w-fit items-center border px-12 py-4 transition-all";
+    "group flex w-fit items-center border px-12 py-4 transition-all font-semibold   uppercase";
 
   const backgroundStyle = {
-    outline: "bg-transparent  border-black hover:bg-theme-gray ",
+    outline: "bg-transparent border-black hover:bg-theme-gray ",
     fill: "bg-theme-blue text-white border-theme-blue hover:bg-theme-blue/90 hover:border-theme-blue/90",
   };
 

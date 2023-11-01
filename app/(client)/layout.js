@@ -3,8 +3,11 @@ import "./globals.css";
 import { readToken } from "@/lib/sanity.api";
 import { getSettings } from "@/lib/sanity.client";
 import { draftMode } from "next/headers";
-import { Header } from "@/components/global/Header";
+import { Footer, Header } from "@/components";
 import clsx from "clsx";
+import { PreviewBanner } from "@/components/preview";
+import { Suspense } from "react";
+import { Analytics } from "@/components/global/Analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,14 +30,24 @@ export default async function RootLayout({ children }) {
   const token = isEnabled ? readToken : undefined;
 
   const [settings] = await Promise.all([getSettings({ token })]);
+
   return (
     <html
       lang="no"
       className={clsx(inter.variable, dm_serif.variable, manrope.variable)}
     >
       <body className="bg-white">
-        <Header settings={settings} />
-        <main id="content">{children}</main>
+        <Suspense>
+          <Analytics googleTagManagerId={settings.config.googleTagManagerId} />
+        </Suspense>
+        <div className="flex flex-col min-h-screen">
+          <Header settings={settings} />
+          <main className="flex-1" id="content">
+            {children}
+            {preview ? <PreviewBanner /> : null}
+          </main>
+          <Footer settings={settings} />
+        </div>
       </body>
     </html>
   );

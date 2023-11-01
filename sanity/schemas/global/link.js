@@ -99,7 +99,7 @@ export default defineType({
     prepare({ title, slug, link }) {
       return {
         title: title,
-        subtitle: slug ? `/${slug}` : link,
+        subtitle: slug ? `/${slug}` : "/",
         icon: RiLinkM,
       };
     },

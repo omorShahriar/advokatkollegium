@@ -45,11 +45,6 @@ const footer = {
       ],
     },
     {
-      title: "Copyright",
-      name: "copyright",
-      type: "texteditorSimple",
-    },
-    {
       name: "bottomLineMenu",
       type: "array",
       title: "Bottom line menu",

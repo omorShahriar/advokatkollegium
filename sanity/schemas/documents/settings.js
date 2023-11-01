@@ -67,7 +67,7 @@ export default defineType({
     }),
     defineField({
       name: "address",
-      type: "texteditorSimple",
+      type: "text",
       title: "Address",
       group: "contact",
       validation: (Rule) => Rule.required(),

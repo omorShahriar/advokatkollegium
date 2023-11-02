@@ -22,7 +22,7 @@ export function Header({ settings }) {
   const { config, header } = settings;
 
   return (
-    <header className="absolute left-0 right-0 top-0 z-40 w-full bg-white">
+    <header className="fixed left-0 right-0 top-0 z-40 w-full bg-white">
       <div className="mx-auto flex w-full max-w-content items-center justify-between px-4 py-6">
         <Link href="/">
           <Image

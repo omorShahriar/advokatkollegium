@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import { BlockContent, Button, Text } from 'components'
 import { urlForImage } from 'lib/sanity.image'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { useEffect, useRef } from 'react'
 
 

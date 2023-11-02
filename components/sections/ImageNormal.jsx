@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { urlForImage } from "lib/sanity.image";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export function ImageNormal({ image, dontRoundCorners, sectionId }) {
   if (!image?.asset) return null;

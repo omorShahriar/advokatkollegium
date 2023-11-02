@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { BlockContent, Button, Text } from "components/elements";
 import { urlForImage } from "lib/sanity.image";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { FiCheckCircle } from "react-icons/fi";
 
 export function RichContent({

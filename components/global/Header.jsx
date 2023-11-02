@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { useNavigate } from "lib/hooks";
 import { resolveHref } from "lib/hooks/resolveHref";
 import { urlForImage } from "lib/sanity.image";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";

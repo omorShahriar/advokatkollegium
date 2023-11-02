@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { BlockContent, Text } from "components";
 import { useTracking } from "lib/hooks";
 import { urlForImage } from "lib/sanity.image";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsArrowRight } from "react-icons/bs";

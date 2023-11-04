@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { useNavigate } from "lib/hooks";
 import { resolveHref } from "lib/hooks/resolveHref";
 import { urlForImage } from "lib/sanity.image";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
@@ -23,13 +23,13 @@ export function Header({ settings }) {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 w-full bg-white">
-      <div className="mx-auto flex w-full max-w-content items-center justify-between px-4 py-6">
-        <Link href="/">
+      <div className="mx-auto flex w-full max-w-content items-center justify-between px-4 py-3">
+        <Link className="" href="/">
           <Image
             src={urlForImage(config.logo)?.height(100).url()}
             alt={config.logo.alt ?? "Logo"}
-            className="h-9 w-auto object-contain md:h-12"
-            width={0}
+            className=" w-40 h-auto "
+            width={300}
             height={100}
             priority
             unoptimized

@@ -15,7 +15,7 @@ export function Footer({ settings }) {
   const { config, footer } = settings;
 
   return (
-    <footer id="footer" className="mt-12 w-full mx-auto max-w-content">
+    <footer id="footer" className="py-24 w-full mx-auto max-w-content">
       <div className="grid gap-5 grid-cols-12 pb-8 ">
         <div className="col-span-4">
           <p className="text-theme-blue font-medium leading-6 ">

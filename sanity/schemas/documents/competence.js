@@ -9,6 +9,11 @@ const comptence = {
       type: "string",
     },
     {
+      name: "description",
+      title: "Description",
+      type: "texteditorSimple",
+    },
+    {
       name: "image",
       title: "Image",
       type: "image",

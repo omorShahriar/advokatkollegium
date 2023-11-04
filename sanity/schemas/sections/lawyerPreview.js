@@ -18,7 +18,7 @@ const lawyerPreview = {
     {
       title: "Description",
       name: "description",
-      type: "text",
+      type: "texteditorSimple",
       validation: (Rule) => Rule.required(),
     },
     {
@@ -35,9 +35,9 @@ const lawyerPreview = {
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Button",
-      name: "button",
+      name: "link",
       type: "link",
+      title: "Button",
       validation: (Rule) => Rule.required(),
     },
   ],

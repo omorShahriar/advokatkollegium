@@ -7,7 +7,7 @@ export function FrontpageContent(props) {
   return (
     <React.Fragment>
       <Hero hero={page.hero} />
-      {/* <RenderSections sections={page.content} settings={settings} /> */}
+      <RenderSections sections={page.content} settings={settings} />
     </React.Fragment>
   );
 }

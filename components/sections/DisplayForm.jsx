@@ -1,23 +1,18 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import imageCompression from "browser-image-compression";
 import clsx from "clsx";
-import { BlockContent, Text } from "components";
+import { Text } from "components";
 import { useTracking } from "lib/hooks";
 import { urlForImage } from "lib/sanity.image";
-import Image from "next/legacy/image";
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { BsArrowRight } from "react-icons/bs";
 
-export function DisplayForm({
-  heading,
-  description,
-  image,
-  form,
-  backgroundColor,
-  sectionId,
-}) {
+import { Button } from "../elements";
+
+export function DisplayForm({ subHeading, heading, form, email, telephone }) {
   const [feedback, setFeedback] = useState("");
 
   const { trackEvent } = useTracking();
@@ -29,23 +24,6 @@ export function DisplayForm({
   } = useForm();
 
   if (!form) return null;
-
-  const backgroundStyle = {
-    transparent: "bg-transparent",
-    brandLight: "bg-primary-50",
-    brandDark: "bg-primary-900 text-white",
-    gray: "bg-gray-100",
-  };
-
-  const fieldStyle = {
-    transparent:
-      "w-full flex-1 rounded-lg border border-gray-300 bg-gray-100 px-4 py-3 outline-none focus:bg-white",
-    brandDark:
-      "w-full flex-1 rounded-lg border border-white bg-white/70 text-black px-4 py-3 outline-none focus:bg-white",
-    brandLight:
-      "w-full flex-1 rounded-lg border border-gray-300 bg-white/70 px-4 py-3 text-primary outline-none focus:border-primary focus:bg-white",
-    gray: "w-full flex-1 rounded-lg border border-gray-300 bg-white/70 px-4 py-3 text-primary outline-none focus:border-primary focus:bg-white",
-  };
 
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -143,163 +121,167 @@ export function DisplayForm({
   };
 
   return (
-    <section id={sectionId}>
-      {heading ? (
-        <Text as="h2" size="display" className="mb-6 text-center">
-          {heading}
-        </Text>
-      ) : null}
-      {description ? (
-        <div className="mx-auto max-w-3xl text-center">
-          <BlockContent value={description} />
-        </div>
-      ) : null}
-      <div
-        className={clsx(
-          "mt-12 flex w-full flex-col overflow-clip rounded-xl lg:flex-row",
-          backgroundStyle[backgroundColor]
-        )}
-      >
-        {image ? (
-          <div className="relative hidden lg:block lg:w-1/2">
-            <Image
-              src={urlForImage(image).url()}
-              alt={image.alt}
-              blurDataURL={image.metadata?.lqip}
-              placeholder="blur"
-              className={clsx(
-                "absolute inset-0 h-full w-full object-cover",
-                backgroundColor === "transparent" && "rounded-xl"
-              )}
-              fill
-              unoptimized
-            />
-          </div>
-        ) : null}
-        <form
-          className={clsx(
-            "grid w-full grid-cols-1 items-start gap-5 p-6 md:grid-cols-2 md:p-12",
-            image && "lg:w-1/2"
-          )}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          {form.fields.map(
-            ({ _key, name, placeholder, type, options, required, width }) => (
-              <div
-                key={_key}
-                className={clsx(
-                  "flex flex-col",
-                  width === "half" ? "col-span-1" : "col-span-1 md:col-span-2"
-                )}
-              >
-                <label htmlFor={name} className="mb-1 text-sm">
-                  {name} {required && <span className="text-red-500">*</span>}
-                </label>
-                {type === "textarea" && (
-                  <textarea
-                    id={name}
-                    name={name}
-                    placeholder={placeholder}
-                    className={clsx(
-                      fieldStyle[backgroundColor],
-                      errors[name] && "border-red-500"
-                    )}
-                    rows={4}
-                    {...register(name, { required: required })}
-                  />
-                )}
-                {type === "select" && (
-                  <select
-                    id={name}
-                    name={name}
-                    placeholder={placeholder}
-                    className={clsx(
-                      fieldStyle[backgroundColor],
-                      errors[name] && "border-red-500"
-                    )}
-                    {...register(name, { required: required })}
+    <section className="bg-theme-gray no-style">
+      <div className="max-w-content w-full px-4 mx-auto py-24 md:py-32">
+        <div className="grid grid-cols-12 gap-6 items-center">
+          <div className="col-span-6 max-w-[560px]">
+            {subHeading ? (
+              <Text as="h3" size="subHeading" className="mb-5 ">
+                {subHeading}
+              </Text>
+            ) : null}
+            {heading ? (
+              <Text as="h2" size="display" className="mb-6 py-0 ">
+                {heading}
+              </Text>
+            ) : null}
+            <div className="flex md:gap-x-16 md:mt-14 mt-12">
+              {email ? (
+                <div className="flex flex-col gap-1">
+                  <Text className=" text-xl">E-post</Text>
+                  <a
+                    href={`mailto:${email}`}
+                    className="font-semibold text-2xl"
                   >
-                    {options.map(({ _key, label, value }) => (
-                      <option key={_key} value={value}>
-                        {label}
-                      </option>
-                    ))}
-                  </select>
-                )}
-                {type === "checkbox" && (
-                  <div className="flex flex-col">
-                    {options.map(({ _key, label, value }) => (
-                      <div key={_key} className="mb-2 flex items-center">
-                        <input
-                          type={type}
-                          id={_key}
-                          name={name}
-                          value={value}
-                          className={clsx(
-                            "mr-2",
-                            errors[name] && "border-red-500"
-                          )}
-                          {...register(name, { required: required })}
-                        />
-                        <label htmlFor={_key}>{label}</label>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {(type === "text" ||
-                  type === "email" ||
-                  type === "tel" ||
-                  type === "number" ||
-                  type === "date" ||
-                  type === "time") && (
-                  <input
-                    type={type}
-                    id={name}
-                    name={name}
-                    placeholder={placeholder}
-                    className={clsx(
-                      fieldStyle[backgroundColor],
-                      errors[name] && "border-red-500"
-                    )}
-                    {...register(name, { required: required })}
-                  />
-                )}
-                {type === "file" && (
-                  <input
-                    type="file"
-                    id={name}
-                    name={name}
-                    placeholder={placeholder}
-                    className={clsx(
-                      fieldStyle[backgroundColor],
-                      errors[name] && "border-red-500"
-                    )}
-                    accept="image/*"
-                    multiple
-                    {...register(name, { required: required })}
-                  />
-                )}
-              </div>
-            )
-          )}
-          <div className="col-span-1 flex items-center gap-6 md:col-span-2">
-            <button
-              type="submit"
-              className={clsx(
-                "group flex w-fit items-center gap-3 rounded-full border px-6 py-3 transition-all ",
-                backgroundColor === "brandDark"
-                  ? "border-white hover:bg-white/20"
-                  : "border-primary-950 bg-primary-950 text-white hover:border-primary-900 hover:bg-primary-900"
-              )}
-            >
-              Send
-              <BsArrowRight className="h-5 w-5 group-hover:translate-x-1" />
-            </button>
-            <Text size="fine" className="w-full text-primary-950">
-              {feedback}
-            </Text>
+                    {email}
+                  </a>
+                </div>
+              ) : null}
+              {telephone ? (
+                <div className="flex flex-col gap-1">
+                  <Text className=" text-xl">Telefon</Text>
+                  <a
+                    href={`tel:${telephone}`}
+                    className="font-semibold text-2xl"
+                  >
+                    {telephone}
+                  </a>
+                </div>
+              ) : null}
+            </div>
           </div>
-        </form>
+
+          <div className={cn("col-span-6 bg-white px-14 py-20")}>
+            <form
+              className={"flex flex-col gap-y-6"}
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              {form.fields.map(
+                ({
+                  _key,
+                  name,
+                  placeholder,
+                  type,
+                  options,
+                  required,
+                  width,
+                }) => (
+                  <div key={_key} className={clsx("flex flex-col")}>
+                    <label htmlFor={name} className="mb-2 font-medium">
+                      {name}{" "}
+                      {required && <span className="text-red-500">*</span>}
+                    </label>
+                    {type === "textarea" && (
+                      <textarea
+                        id={name}
+                        name={name}
+                        placeholder={placeholder}
+                        className={clsx(
+                          errors[name] && "border-red-500",
+                          "p-6 bg-theme-gray"
+                        )}
+                        rows={4}
+                        {...register(name, { required: required })}
+                      />
+                    )}
+                    {type === "select" && (
+                      <select
+                        id={name}
+                        name={name}
+                        placeholder={placeholder}
+                        className={clsx(
+                          errors[name] && "border-red-500",
+                          "p-6 bg-theme-gray"
+                        )}
+                        {...register(name, { required: required })}
+                      >
+                        {options.map(({ _key, label, value }) => (
+                          <option key={_key} value={value}>
+                            {label}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                    {type === "checkbox" && (
+                      <div className="flex flex-col">
+                        {options.map(({ _key, label, value }) => (
+                          <div key={_key} className="mb-2 flex items-center">
+                            <input
+                              type={type}
+                              id={_key}
+                              name={name}
+                              value={value}
+                              className={clsx(
+                                "mr-2",
+                                errors[name] && "border-red-500"
+                              )}
+                              {...register(name, { required: required })}
+                            />
+                            <label htmlFor={_key}>{label}</label>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {(type === "text" ||
+                      type === "email" ||
+                      type === "tel" ||
+                      type === "number" ||
+                      type === "date" ||
+                      type === "time") && (
+                      <input
+                        type={type}
+                        id={name}
+                        name={name}
+                        placeholder={placeholder}
+                        className={clsx(
+                          errors[name] && "border-red-500",
+                          "p-6 bg-theme-gray"
+                        )}
+                        {...register(name, { required: required })}
+                      />
+                    )}
+                    {type === "file" && (
+                      <input
+                        type="file"
+                        id={name}
+                        name={name}
+                        placeholder={placeholder}
+                        className={clsx(
+                          errors[name] && "border-red-500",
+                          "p-6 bg-theme-gray"
+                        )}
+                        accept="image/*"
+                        multiple
+                        {...register(name, { required: required })}
+                      />
+                    )}
+                  </div>
+                )
+              )}
+              <div className=" flex flex-col items-center gap-6 mt-8 ">
+                <button
+                  type="submit"
+                  className="bg-theme-blue group  w-full text-center items-center border px-12 py-4 transition-all font-semibold   uppercase text-white border-theme-blue hover:bg-theme-blue/90 hover:border-theme-blue/90"
+                >
+                  Send
+                </button>
+                <Text size="fine" className="w-full text-primary-950">
+                  {feedback}
+                </Text>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );

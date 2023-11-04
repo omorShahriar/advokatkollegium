@@ -11,7 +11,6 @@ export default defineType({
       name: "subHeading",
       type: "string",
       title: "Sub Heading",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "heading",
@@ -20,15 +19,28 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "description",
+      name: "content",
       type: "texteditorSimple",
-      title: "Description",
+      title: "Content",
+      validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "link",
       type: "link",
       title: "Button",
+    }),
+    defineField({
+      name: "background",
+      type: "string",
+      title: "Background",
+      options: {
+        list: [
+          { title: "Transparent", value: "transparent" },
+          { title: "Image", value: "image" },
+          { title: "Beige", value: "beige" },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "image",
@@ -65,18 +77,7 @@ export default defineType({
           return true;
         }),
     }),
-    defineField({
-      name: "background",
-      type: "string",
-      title: "Background",
-      options: {
-        list: [
-          { title: "Transparent", value: "transparent" },
-          { title: "Image", value: "image" },
-        ],
-      },
-      validation: (Rule) => Rule.required(),
-    }),
+
     defineField({
       name: "sectionId",
       type: "string",

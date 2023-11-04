@@ -49,7 +49,7 @@ export default defineType({
     }),
 
     defineField({
-      name: "button",
+      name: "link",
       type: "link",
       title: "Button",
     }),

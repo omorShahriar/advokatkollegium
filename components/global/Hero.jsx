@@ -2,21 +2,23 @@ import clsx from "clsx";
 import { Button } from "components";
 import { resolveHref } from "lib/hooks";
 import { urlForImage } from "lib/sanity.image";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export function Hero({ hero }) {
-  console.log(hero.actions);
   return (
-    <div className=" relative mt-[106px] flex justify-end bg-theme-gray w-full">
-      <div className="relative w-[65%] h-[calc(100vh-106px)]">
+    <div className=" relative mt-[82px] flex justify-end bg-theme-gray w-full">
+      <div className="relative w-[65%] h-[calc(100vh-82px)]">
         <Image
           src={urlForImage(hero.background).url()}
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
           alt={hero.background.alt}
           className="absolute inset-0"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
         />
       </div>
       <div className=" absolute z-10 inset-0">

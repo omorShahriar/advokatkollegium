@@ -8,6 +8,7 @@ function upperFirst(str) {
 
 export function RenderSections(props) {
   const { sections, settings } = props;
+
   return (
     <React.Fragment>
       {sections?.map((section) => {

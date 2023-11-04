@@ -52,9 +52,11 @@ const employee = {
   preview: {
     select: {
       title: "name",
+      image: "image",
     },
-    prepare: ({ title }) => ({
+    prepare: ({ title, image }) => ({
       title,
+      media: image,
     }),
   },
 };

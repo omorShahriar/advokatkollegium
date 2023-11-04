@@ -1,5 +1,6 @@
-import { RiEdit2Line, RiTodoLine } from "react-icons/ri";
+import { RiEdit2Line, RiMailSendLine, RiTodoLine } from "react-icons/ri";
 import { defineField, defineType } from "sanity";
+import form from "../documents/form";
 
 export default defineType({
   name: "displayForm",
@@ -24,13 +25,11 @@ export default defineType({
       name: "email",
       type: "string",
       title: "Email",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "telephone",
       type: "string",
       title: "Telephone",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       title: "Form",
@@ -46,6 +45,7 @@ export default defineType({
       formName: "form.name",
     },
     prepare({ heading, formName }) {
+      console.log(formName);
       return {
         title: "Form",
         subtitle: `${heading} | Connected form: ${formName}`,

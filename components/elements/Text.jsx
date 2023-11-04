@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 export function Text({
   as: Component = "p",
@@ -10,21 +10,20 @@ export function Text({
 }) {
   const colorClasses = {
     default: "inherit",
-    dark: "text-primary-950",
-    light: "text-primary-600",
     white: "text-white",
-    gray: "text-gray-300",
+    orange: "text-theme-orange",
   };
 
   const sizeClasses = {
     copy: "text-base",
     fine: "text-sm",
-    subheading: "text-lg font-medium",
-    heading: "text-xl lg:text-2xl font-medium font-dm-serif",
-    display: "text-3xl lg:text-4xl font-medium font-dm-serif",
+    subHeading:
+      "text-base font-bold text-theme-orange uppercase tracking-[1px] leading-5",
+    heading: "text-xl lg:text-2xl font-medium font-dm-serif ",
+    display: "text-4xl lg:text-6xl  font-dm-serif py-10",
   };
 
-  const classes = clsx(colorClasses[color], sizeClasses[size], className);
+  const classes = cn(colorClasses[color], sizeClasses[size], className);
 
   return (
     <Component className={classes} {...props}>

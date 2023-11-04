@@ -1,5 +1,5 @@
 import { urlForImage } from "lib/sanity.image";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 export function Figure({ image }) {
   return (
@@ -13,7 +13,10 @@ export function Figure({ image }) {
         placeholder="blur"
         className="w-full rounded-xl"
         unoptimized
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
     </figure>
   );
 }

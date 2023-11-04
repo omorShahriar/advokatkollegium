@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import clsx from "clsx";
 import { resolveHref, useTracking } from "lib/hooks";
 import Link from "next/link";
@@ -44,7 +45,7 @@ export function Button({ link, title, onPress, className, style = "outline" }) {
     return (
       <Link
         href={href}
-        className={clsx(defaultStyle, backgroundStyle[style], className)}
+        className={cn(defaultStyle, backgroundStyle[style], className)}
       >
         {link?.title}
       </Link>
@@ -55,7 +56,7 @@ export function Button({ link, title, onPress, className, style = "outline" }) {
     return (
       <button
         onClick={onPress}
-        className={clsx(defaultStyle, backgroundStyle[style], className)}
+        className={cn(defaultStyle, backgroundStyle[style], className)}
       >
         {title}
       </button>
@@ -63,7 +64,7 @@ export function Button({ link, title, onPress, className, style = "outline" }) {
   }
 
   return (
-    <a className={clsx(defaultStyle, backgroundStyle[style], className)}>
+    <a className={cn(defaultStyle, backgroundStyle[style], className)}>
       {link?.title || title}
     </a>
   );

@@ -1,7 +1,7 @@
 import { urlForImage } from "@/lib/sanity.image";
 import Image from "next/image";
 
-const LawyerThumbnail = ({ lawyer }) => {
+export const LawyerThumbnail = ({ lawyer }) => {
   return (
     <Image
       src={urlForImage(lawyer.image).width(800).url()}
@@ -14,5 +14,3 @@ const LawyerThumbnail = ({ lawyer }) => {
     />
   );
 };
-
-export default LawyerThumbnail;

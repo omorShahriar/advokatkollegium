@@ -1,11 +1,9 @@
-import { Hero } from '@/components'
-import { RenderSections } from '@/components/sections/RenderSections'
-import React from 'react'
-
-
+import { Hero } from "@/components";
+import { RenderSections } from "@/components/sections/RenderSections";
+import React from "react";
 
 export function PageContent(props) {
-  const { page, settings, jsonLd } = props
+  const { page, settings, jsonLd } = props;
 
   return (
     <React.Fragment>
@@ -13,8 +11,8 @@ export function PageContent(props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Hero hero={page.hero} />
+      {page.hero ? <Hero hero={page.hero} /> : null}
       <RenderSections sections={page.content} settings={settings} />
     </React.Fragment>
-  )
+  );
 }

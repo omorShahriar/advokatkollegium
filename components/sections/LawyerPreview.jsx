@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { BlockContent, Text } from "../elements";
-import LawyerThumbnail from "../elements/lawyer/LawyerThumbnail";
+import { LawyerThumbnail } from "../elements/lawyer";
 import Image from "next/image";
 import { urlForImage } from "@/lib/sanity.image";
 import { cn } from "@/lib/utils";
